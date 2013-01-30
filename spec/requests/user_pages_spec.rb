@@ -45,9 +45,14 @@ describe "User pages" do
         fill_in "Password",     with: "foobar"
         fill_in "Confirmation", with: "foobar"
      end
-    
+      
     it "should create a user" do
       expect { click_button submit }.to change(User, :count).by(1)
+    end
+    
+    describe "after saving the user" do
+      before { click_button submit }
+      let(:user) {User.find_by_email('div.alert.alert-success', text: 'Welcome') }
     end
   end
 end
